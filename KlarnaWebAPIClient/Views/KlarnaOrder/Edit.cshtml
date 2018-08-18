@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+@model KlarnaWebAPIClient.ViewModel.KlarnaOrderViewModel
+
+@*<h2> Edit Payment Status </h2>*@
+<br />
+<br />
+
+<div align="center" width="200px">
+    @using (Html.BeginForm("ProcessEdit", "KlarnaOrder", FormMethod.Post, new { vm = Model }))
+    {
+        <table id="tedit" class="table" width="200px" cellpadding="20">            
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.klarnaOrder.Status_Payment)
+                </td>
+                <td>
+                    @{
+                       List<SelectListItem> listItems= new List<SelectListItem>();                                              
+                       listItems.Add(new SelectListItem
+                       {
+                           Text = "SMS Sent",
+                           Value = "0"                           
+                       });
+                       listItems.Add(new SelectListItem
+                       {
+                           Text = "Payment Completed",
+                           Value = "1"                           
+                       });                       
+                    }
+                    @Html.DropDownListFor(model => model.klarnaOrder.Status_Payment, listItems, new { @class = "form-control", @onchange="setPaymentText(this.value)"})                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.klarnaOrder.Status_Payment_Text, new { @class = "text-right"})
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.klarnaOrder.Status_Payment_Text, new { @class = "form-control", maxlength=50, @readonly="readonly" })                      
+                </td>
+            </tr>            
+            <tr>
+                <td> </td>
+
+                <td>
+                    <input type="submit" value="Save" class="btn btn-primary"/> &nbsp; <a class="btn btn-link" href="@Url.Action("Index","KlarnaOrder")"> Back </a>
+                    @Html.HiddenFor(model => model.klarnaOrder.CompName)
+                    @Html.HiddenFor(model => model.klarnaOrder.OrderNo_)
+                    @Html.HiddenFor(model => model.klarnaOrder.KlarnaID)
+                    @Html.HiddenFor(model => model.klarnaOrder.Internal_Order_Id)
+                    @Html.HiddenFor(model => model.klarnaOrder.Date_Created)
+                    @Html.HiddenFor(model => model.klarnaOrder.Time_Created)
+                    @Html.HiddenFor(model => model.klarnaOrder.OrderType)
+                    @Html.HiddenFor(model => model.klarnaOrder.Amount)
+                    @Html.HiddenFor(model => model.klarnaOrder.Vat_Amount)                    
+                </td>
+            </tr>
+        </table>
+        
+        <script type="text/javascript">
+            var selectDropDownList = document.getElementById("klarnaOrder_Status_Payment");
+            selectDropDownList.options.selectedIndex = '@Model.klarnaOrder.Status_Payment';            
+            var textPayment = document.getElementById("klarnaOrder_Status_Payment_Text");
+            setPaymentText(selectDropDownList.options.selectedIndex);                
+            
+            function setPaymentText(val) {
+                textPayment.value = selectDropDownList.options[selectDropDownList.selectedIndex].text;
+                @*if (val == 0) {
+                    textPayment.value = selectDropDownList.options[selectDropDownList.selectedIndex].text;
+                    //textPayment.setAttribute("readonly","readonly");
+                } else {
+                    //textPayment.removeAttribute("readonly");
+                    textPayment.value = selectDropDownList.options[selectDropDownList.selectedIndex].text + " " + '@DateTime.Now';
+                    textPayment.focus();
+                }*@
+            }
+
+            //function getDateTime() {
+            //    var today = new Date();
+            //    var dd = today.getDate();
+            //    var mm = today.getMonth() + 1;
+            //    var yyyy = today.getFullYear();
+
+            //    var hh = today.getHours();
+            //    var nn = today.getMinutes();
+            //    var ss = today.getSeconds();
+
+            //    return dd + '.' + mm + '.' + yyyy + ' ' + hh + ':' + nn + ':' + ss;
+            //}
+        </script>
+        
+    }
+</div>

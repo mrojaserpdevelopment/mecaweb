@@ -1,0 +1,2 @@
+﻿api_url=https://remote.erpdevelopment.no/KlarnaWebAPI/api/
+api_url_dev=http://localhost:7772/api/

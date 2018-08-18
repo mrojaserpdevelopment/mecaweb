@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Lafiesta50Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Lafiesta50ModelStoreContainer">
+          <EntitySet Name="Klarna Orders" EntityType="Lafiesta50Model.Store.Klarna Orders" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Klarna Orders">
+          <Key>
+            <PropertyRef Name="CompName" />
+            <PropertyRef Name="OrderNo_" />
+            <PropertyRef Name="KlarnaID" />
+          </Key>
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CompName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="OrderNo_" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="KlarnaID" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Internal Order Id" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Date Created" Type="datetime" Nullable="false" />
+          <Property Name="Time Created" Type="datetime" Nullable="false" />
+          <Property Name="OrderType" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="38" Scale="20" />
+          <Property Name="Vat Amount" Type="decimal" Nullable="false" Precision="38" Scale="20" />
+          <Property Name="Status Payment" Type="int" Nullable="false" />
+          <Property Name="Status Payment Text" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Lafiesta50Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Lafiesta50Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Klarna_Orders" EntityType="Lafiesta50Model.Klarna_Order" />
+        </EntityContainer>
+        <EntityType Name="Klarna_Order">
+          <Key>
+            <PropertyRef Name="CompName" />
+            <PropertyRef Name="OrderNo_" />
+            <PropertyRef Name="KlarnaID" />
+          </Key>
+          <Property Name="timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="CompName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="OrderNo_" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="KlarnaID" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Internal_Order_Id" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Time_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderType" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="38" Scale="20" />
+          <Property Name="Vat_Amount" Type="Decimal" Nullable="false" Precision="38" Scale="20" />
+          <Property Name="Status_Payment" Type="Int32" Nullable="false" />
+          <Property Name="Status_Payment_Text" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Lafiesta50ModelStoreContainer" CdmEntityContainer="Lafiesta50Entities">
+          <EntitySetMapping Name="Klarna_Orders">
+            <EntityTypeMapping TypeName="Lafiesta50Model.Klarna_Order">
+              <MappingFragment StoreEntitySet="Klarna Orders">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="OrderNo_" ColumnName="OrderNo_" />
+                <ScalarProperty Name="KlarnaID" ColumnName="KlarnaID" />
+                <ScalarProperty Name="Internal_Order_Id" ColumnName="Internal Order Id" />
+                <ScalarProperty Name="Date_Created" ColumnName="Date Created" />
+                <ScalarProperty Name="Time_Created" ColumnName="Time Created" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Vat_Amount" ColumnName="Vat Amount" />
+                <ScalarProperty Name="Status_Payment" ColumnName="Status Payment" />
+                <ScalarProperty Name="Status_Payment_Text" ColumnName="Status Payment Text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

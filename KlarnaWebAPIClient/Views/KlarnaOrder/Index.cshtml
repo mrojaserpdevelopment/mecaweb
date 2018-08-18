@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Klarna Orders</h2>
+
+<div align="center">
+    @*@Html.ActionLink("Create", "Create", "Customer", new { area = "" }, null)*@
+    <br /><br />
+    <table class="table" cellpadding="2"  cellspacing="2" border="1">
+        <tr class="btn-primary">            
+            <th>Company</th>
+            <th>Order No.</th>
+            <th>Klarna ID</th>
+            <th>Int. Order Id</th>
+            <th>Date Created</th>
+            <th>Time Created</th>
+            <th>Order Type</th>
+            <th>Amount</th>
+            <th>Vat Amount</th>
+            <th>Payment Status</th>
+            <th>Payment Status Text</th>
+        </tr>
+        @foreach (var Order in ViewBag.listKlarnaOrders)
+        {
+            <tr>
+                <td>
+                    @Order.CompName
+                </td>
+                <td>
+                    @Order.OrderNo_
+                </td>
+                <td>
+                    @Order.KlarnaID
+                </td>
+                <td>
+                    @Order.Internal_Order_Id
+                </td>
+                <td>
+                    @Order.Date_Created.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Order.Time_Created.ToString("HH:mm:ss")
+                </td>
+                <td>
+                    @if (Order.OrderType == 0)
+                     {
+                        <span>Part Sales</span>
+                     }  
+                     else if (Order.OrderType == 1)
+                     {
+                        <span>Vehicle Sales</span>
+                     }                                   
+                     else if (Order.OrderType == 2)
+                     {
+                        <span>Service Sales</span>
+                     }
+                </td>
+                <td>
+                    @string.Format("{0:n2}", Order.Amount)                    
+                </td>
+                <td>
+                    @string.Format("{0:n2}", Order.Vat_Amount)
+                </td>
+                <td>
+                    @(Order.Status_Payment == 0 ? "SMS Sent" : "Payment Completed" )
+                </td>
+                <td>
+                    @Order.Status_Payment_Text
+                </td>
+                <td>
+                    @*<a onclick="return confirm('Do you want to Delete?')"
+                       href="@Url.Action("Delete","Customer",new {id= Cust.CustomerId})">Delete</a> ||*@
+                    @*<a href="@Url.Action("Edit","Customer",new {id= Cust.CustomerId})">Edit</a>*@
+                    <a href="@Url.Action("Edit","KlarnaOrder",new {id= Order.OrderNo_})">Edit</a>
+                    @*@Html.ActionLink("Edit", "Edit", "Customer", new { id = Cust.CustomerId })*@
+                </td>
+            </tr>
+        }
+    </table>
+</div>

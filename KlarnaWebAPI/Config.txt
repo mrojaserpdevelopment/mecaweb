@@ -1,0 +1,7 @@
+﻿datasource=DEV01\MSSQL
+initialcatalog=Lafiesta50
+userid=hjl
+password=hjl321
+integratedsecurity=false
+MultipleActiveResultSets=True
+App=EntityFramework
